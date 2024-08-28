@@ -3,6 +3,9 @@ const resolvers = {
       users: async (_, __, { db }) => {
         return await db.collection('users').find().toArray();
       },
+      courses: async (_, __, { db }) => {  // Query to get all courses
+        return await db.collection('courses').find().toArray();
+      },
     },
     Mutation: {
       addUser: async (_, { email, password, role }, { db }) => {
@@ -37,6 +40,15 @@ const resolvers = {
         } catch (error) {
           console.error('Login error:', error.message);
           throw new Error('An error occurred during login');
+        }
+      },
+      addCourse: async (_, { title, description }, { db }) => {  // Mutation to add a course
+        try {
+          const result = await db.collection('courses').insertOne({ title, description });
+          return { id: result.insertedId.toString(), title, description };
+        } catch (error) {
+          console.error('Error adding course:', error);
+          throw new Error('Failed to add course');
         }
       },
     },
