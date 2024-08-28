@@ -1,0 +1,91 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .login-header {
+    background-color: #b2d8d8;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .login-header h1 {
+    margin: 0;
+    font-size: 3em;
+    color: #fff;
+  }
+  
+  .login-form-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 10%;
+  }
+  
+  .login-image {
+    flex: 1;
+    background-image: url('./images/Login.png'); /* Add the path to your image */
+    background-size: cover;
+    background-position: center;
+    height: 100%;
+  }
+  
+  .login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 5%;
+  }
+  
+  .login-form h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    color: #333;
+  }
+  
+  .login-input {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 100%;
+  }
+  
+  .login-button {
+    padding: 15px;
+    background-color: #b2d8d8;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .login-button:hover {
+    background-color: #8db6b6;
+  }
+  
+  .signup-link {
+    color: #b2d8d8;
+    cursor: pointer;
+    text-decoration: underline;
+    text-align: center;
+  }
+  
+  .signup-link:hover {
+    color: #8db6b6;
+  }
+  
