@@ -9,10 +9,10 @@ const LOGIN_USER = gql`
     loginUser(email: $email, password: $password) {
       id
       email
+      role
     }
   }
 `;
-
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -26,21 +26,28 @@ const Login = () => {
     e.preventDefault();
     
     try {
-        console.log('Sending login request with:', { email, password });
-    
-        const { data } = await loginUser({ variables: { email, password } });
-        console.log('Received response:', data);
-    
-        if (data.loginUser) {
-          navigate('/home'); // Redirect to Home page on successful login
+      console.log('Sending login request with:', { email, password });
+  
+      const { data } = await loginUser({ variables: { email, password } });
+      console.log('Received response:', data);
+  
+      if (data.loginUser) {
+        const { role } = data.loginUser;
+        if (role === 'STUDENT') {
+          navigate('/home'); // Redirect to Home page for students
+        } else if (role === 'FACULTY') {
+          navigate('/faculty-dashboard'); // Redirect to Faculty Dashboard for faculty
         } else {
-          setError('Invalid credentials');
+          setError('Unknown role');
         }
-      } catch (error) {
-        console.error('GraphQL error:', error.message);
+      } else {
         setError('Invalid credentials');
       }
-    };
+    } catch (error) {
+      console.error('GraphQL error:', error.message);
+      setError('Invalid credentials');
+    }
+  };
 
   const navigateToSignup = () => {
     navigate('/signup'); // Redirects to AddUser (Sign Up page)

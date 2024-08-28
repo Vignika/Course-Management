@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import client from './apolloClient';
 import AddUser from './components/AddUser';
 import Login from './components/Login';
-import Home from './components/Home';
+import Home from './components/StudentDashboard';
+import FacultyDashboard from './components/FacultyDashbord'; // Import new component
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             
             {/* Home page */}
             <Route path="/home" element={<Home />} />
+            
+            {/* Faculty Dashboard */}
+            <Route path="/faculty-dashboard" element={<FacultyDashboard />} />
             
             {/* Redirect for undefined routes */}
             <Route path="*" element={<Navigate to="/login" />} />

@@ -78,3 +78,20 @@ body, html {
     background-color: #8db6b6;
   }
   
+  /* Role Selection Styling */
+  .signup-role {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  .signup-role label {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  
+  .signup-role input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
