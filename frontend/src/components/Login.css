@@ -79,13 +79,13 @@ body, html {
   }
   
   .signup-link {
-    color: #b2d8d8;
+    color: #000000;
     cursor: pointer;
     text-decoration: underline;
     text-align: center;
   }
   
   .signup-link:hover {
-    color: #8db6b6;
+    color: #000000;
   }
   
