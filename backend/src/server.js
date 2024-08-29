@@ -1,24 +1,20 @@
 require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
-const typeDefs = require('./schema');
-const resolvers = require('./resolvers');
+const resolvers = require('./resolvers/index')
 
-const client = new MongoClient(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
-let db;
+const typeDefs = require('./schema/index')
 
 const startServer = async () => {
   try {
-    await client.connect();
-    db = client.db(); // No need to pass DB_NAME here since it's included in MONGO_URI
+    await mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
     console.log('Connected to MongoDB');
 
     const server = new ApolloServer({
       typeDefs,
       resolvers,
-      context: { db },
     });
 
     await server.start();
@@ -29,7 +25,7 @@ const startServer = async () => {
       console.log(`Server ready at http://localhost:4000${server.graphqlPath}`)
     );
   } catch (error) {
-    console.error('Failed to start server', error);
+    console.error('Failed to start server', error.message);
   }
 };
 

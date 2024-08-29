@@ -7,27 +7,28 @@ const typeDefs = gql`
   }
 
   type User {
-    id: ID!
+    _id: ID!
     email: String!
-    password: String!
-    role: Role!  # Ensure this field is non-nullable
+    role: Role!
   }
 
   type Course {
-    id: ID!
+    _id: ID!
     title: String!
     description: String!
   }
 
   type Query {
     users: [User]
-    courses: [Course]  # Query to get all courses
+    courses: [Course]
   }
 
   type Mutation {
     addUser(email: String!, password: String!, role: Role!): User
     loginUser(email: String!, password: String!): User
-    addCourse(title: String!, description: String!): Course  # Mutation to add a course
+    addCourse(title: String!, description: String!): Course
+    deleteCourse(_id: ID!): Boolean
+    editCourse(_id: ID!, title: String!, description: String!): Course
   }
 `;
 
