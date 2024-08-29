@@ -3,8 +3,13 @@ const resolvers = {
       users: async (_, __, { db }) => {
         return await db.collection('users').find().toArray();
       },
-      courses: async (_, __, { db }) => {  // Query to get all courses
-        return await db.collection('courses').find().toArray();
+      courses: async (_, __, { db }) => {
+        const courses = await db.collection('courses').find().toArray();
+        return courses.map(course => ({
+          id: course._id.toString(), // Ensure id is a string
+          title: course.title,
+          description: course.description,
+        }));
       },
     },
     Mutation: {
@@ -15,7 +20,7 @@ const resolvers = {
             throw new Error('User already exists');
           }
           const result = await db.collection('users').insertOne({ email, password, role });
-          return { id: result.insertedId.toString(), email, role }; // Include role in return
+          return { id: result.insertedId.toString(), email, role };
         } catch (error) {
           console.error('Error adding user:', error);
           throw new Error('Failed to add user');
@@ -23,26 +28,20 @@ const resolvers = {
       },
       loginUser: async (_, { email, password }, { db }) => {
         try {
-          console.log('Received login request with:', { email, password });
-          
           const user = await db.collection('users').findOne({ email });
-          console.log('User fetched from database:', user);
-          
           if (!user) {
             throw new Error('Invalid credentials');
           }
-          
           if (user.password !== password) {
             throw new Error('Invalid credentials');
           }
-          
-          return { id: user._id.toString(), email: user.email, role: user.role }; // Include role in return
+          return { id: user._id.toString(), email: user.email, role: user.role };
         } catch (error) {
           console.error('Login error:', error.message);
           throw new Error('An error occurred during login');
         }
       },
-      addCourse: async (_, { title, description }, { db }) => {  // Mutation to add a course
+      addCourse: async (_, { title, description }, { db }) => {
         try {
           const result = await db.collection('courses').insertOne({ title, description });
           return { id: result.insertedId.toString(), title, description };
