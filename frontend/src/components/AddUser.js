@@ -37,7 +37,7 @@ const AddUser = () => {
   return (
     <div className="signup-container">
       <div className="signup-header">
-        <h1>Sign Up</h1>
+        <h1>Course Management</h1>
       </div>
       <div className="signup-form-container">
         <div className="signup-image">

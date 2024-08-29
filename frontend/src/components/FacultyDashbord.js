@@ -1,5 +1,18 @@
 import React, { useState } from 'react';
-import { useMutation, gql } from '@apollo/client';
+import { useMutation, gql, useQuery } from '@apollo/client';
+
+
+
+const GET_COURSES = gql`
+  query GetCourses {
+    courses {
+      id
+      title
+      description
+    }
+  }
+`;
+
 
 const ADD_COURSE = gql`
   mutation AddCourse($title: String!, $description: String!) {
@@ -14,7 +27,11 @@ const ADD_COURSE = gql`
 const FacultyDashboard = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [addCourse] = useMutation(ADD_COURSE);
+  const { loading, error, data } = useQuery(GET_COURSES);
+  const [addCourse] = useMutation(ADD_COURSE,{
+
+  refetchQueries: [{ query: GET_COURSES }],
+});
 
   const handleAddCourse = async (e) => {
     e.preventDefault();
@@ -28,6 +45,9 @@ const FacultyDashboard = () => {
       alert('Error adding course');
     }
   };
+
+  if (loading) return <p>Loading courses...</p>;
+  if (error) return <p>Error loading courses: {error.message}</p>;
 
   return (
     <div>
@@ -43,6 +63,16 @@ const FacultyDashboard = () => {
         </div>
         <button type="submit">Add Course</button>
       </form>
+
+      <h3>Courses</h3>
+      <ul>
+        {data.courses.map((course) => (
+          <li key={course.id}>
+            <h4>{course.title}</h4>
+            <p>{course.description}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
