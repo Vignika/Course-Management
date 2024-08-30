@@ -5,7 +5,7 @@ const resolvers = {
   Query: {
     users: async () => {
       try {
-        return await User.find();
+        return await User.find().populate('enrolledCourses');
       } catch (error) {
         console.error('Error fetching users:', error);
         throw new Error('Failed to fetch users');
@@ -13,10 +13,18 @@ const resolvers = {
     },
     courses: async () => {
       try {
-        return await Course.find();
+        return await Course.find().populate('students');
       } catch (error) {
         console.error('Error fetching courses:', error);
         throw new Error('Failed to fetch courses');
+      }
+    },
+    user: async (_, { id }) => {
+      try {
+        return await User.findById(id).populate('enrolledCourses');
+      } catch (error) {
+        console.error('Error fetching user:', error);
+        throw new Error('Failed to fetch user');
       }
     },
   },
@@ -83,6 +91,41 @@ const resolvers = {
       } catch (error) {
         console.error('Error editing course:', error);
         throw new Error('Failed to edit course');
+      }
+    },
+    enrollInCourse: async (_, { courseId, userId }) => {
+      try {
+        // Find course and user
+        const course = await Course.findById(courseId);
+        const user = await User.findById(userId);
+
+        // Check if course and user exist
+        if (!course) {
+          console.error(`Course with ID ${courseId} not found`);
+          throw new Error('Course not found');
+        }
+        if (!user) {
+          console.error(`User with ID ${userId} not found`);
+          throw new Error('User not found');
+        }
+
+        // Enroll student in the course
+        if (!course.students.includes(userId)) {
+          course.students.push(userId);
+          await course.save();
+        }
+
+        // Add course to user's enrolledCourses
+        if (!user.enrolledCourses.includes(courseId)) {
+          user.enrolledCourses.push(courseId);
+          await user.save();
+        }
+
+        // Populate students in the course
+        return course.populate('students');
+      } catch (error) {
+        console.error('Error enrolling in course:', error);
+        throw new Error('Failed to enroll in course');
       }
     },
   },

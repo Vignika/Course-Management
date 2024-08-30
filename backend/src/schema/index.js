@@ -10,16 +10,19 @@ const typeDefs = gql`
     _id: ID!
     email: String!
     role: Role!
+    enrolledCourses: [Course]
   }
 
   type Course {
     _id: ID!
     title: String!
     description: String!
+    students: [User]  
   }
 
   type Query {
     users: [User]
+    user(id: ID!): User
     courses: [Course]
   }
 
@@ -29,7 +32,8 @@ const typeDefs = gql`
     addCourse(title: String!, description: String!): Course
     deleteCourse(_id: ID!): Boolean
     editCourse(_id: ID!, title: String!, description: String!): Course
-  }
+    enrollInCourse(courseId: ID!, userId: ID!): Course 
+}
 `;
 
 module.exports = typeDefs;
