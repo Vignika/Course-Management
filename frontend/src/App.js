@@ -1,11 +1,11 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import client from './apolloClient';
+import client from './apolloClient'; // Ensure this file exports a configured ApolloClient instance
 import AddUser from './components/AddUser';
 import Login from './components/Login';
 import Home from './components/StudentDashboard';
-import FacultyDashboard from './components/FacultyDashbord'; // Import new component
+import FacultyDashboard from '../src/components/FacultyDashbord'; // Correct import for the component
 
 function App() {
   return (

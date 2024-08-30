@@ -1,73 +1,75 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
-import { useNavigate } from 'react-router-dom';
-import './AddUser.css'; // Make sure to create this CSS file
+import './AddUser.css'; // Import the CSS file
 
 const ADD_USER = gql`
   mutation AddUser($email: String!, $password: String!, $role: Role!) {
     addUser(email: $email, password: $password, role: $role) {
-      id
+      _id
       email
       role
     }
   }
 `;
 
-const AddUser = () => {
+const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [selectedRole, setSelectedRole] = useState('STUDENT'); // Default role
-  const [addUser] = useMutation(ADD_USER);
-  const navigate = useNavigate();
+  const [role, setRole] = useState('STUDENT');
+
+  const [addUser, { loading, error }] = useMutation(ADD_USER);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    await addUser({ variables: { email, password, role: selectedRole } });
-    setEmail('');
-    setPassword('');
-    navigate('/login');
-  } catch (error) {
-    console.error('Error during user addition:', error.message);
-    alert('An error occurred. Please try again.');
-  }
-};
-
+    e.preventDefault();
+    try {
+      const response = await addUser({
+        variables: { email, password, role },
+      });
+      console.log('User added:', response.data.addUser);
+      // Handle successful signup
+    } catch (e) {
+      console.error('Error signing up:', e.message);
+      // Handle error
+    }
+  };
 
   return (
     <div className="signup-container">
-      <div className="signup-header">
+      <div className="header">
         <h1>Course Management</h1>
       </div>
-      <div className="signup-form-container">
+      <div className="signup-content">
         <div className="signup-image">
-          {/* Image/Illustration can be placed here */}
+          {/* Image is represented as a div here; you can replace it with an <img> tag if you prefer */}
+          <div className="image-placeholder"></div>
         </div>
         <form onSubmit={handleSubmit} className="signup-form">
           <h2>Sign Up</h2>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            required
-            className="signup-input"
-          />
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            required
-            className="signup-input"
-          />
+          <div className="input-group">
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="input-group">
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
           <div className="role-selection">
             <label>
               <input
                 type="radio"
                 value="STUDENT"
-                checked={selectedRole === 'STUDENT'}
-                onChange={() => setSelectedRole('STUDENT')}
+                checked={role === 'STUDENT'}
+                onChange={(e) => setRole(e.target.value)}
               />
               Student
             </label>
@@ -75,17 +77,20 @@ const AddUser = () => {
               <input
                 type="radio"
                 value="FACULTY"
-                checked={selectedRole === 'FACULTY'}
-                onChange={() => setSelectedRole('FACULTY')}
+                checked={role === 'FACULTY'}
+                onChange={(e) => setRole(e.target.value)}
               />
               Faculty
             </label>
           </div>
-          <button type="submit" className="signup-button">Sign Up</button>
+          <button type="submit" disabled={loading} className="signup-button">
+            {loading ? 'Signing Up...' : 'Sign Up'}
+          </button>
+          {error && <p className="error-message">Error: {error.message}</p>}
         </form>
       </div>
     </div>
   );
 };
 
-export default AddUser;
+export default SignupForm;

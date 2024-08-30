@@ -1,97 +1,107 @@
-body, html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-  }
-  
-  .signup-container {
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    width: 100%;
-  }
-  
-  .signup-header {
-    background-color: #b2d8d8;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .signup-header h1 {
-    margin: 0;
-    font-size: 3em;
-    color: #fff;
-  }
-  
-  .signup-form-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    padding: 0 10%;
-  }
-  
-  .signup-image {
-    flex: 1;
-    background-image: url('./images/SignUp.png'); /* Add the path to your image */
-    background-size: cover;
-    background-position: center;
-    height: 100%;
-  }
-  
-  .signup-form {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 5%;
-  }
-  
-  .signup-form h2 {
-    margin-bottom: 20px;
-    font-size: 2em;
-    color: #333;
-  }
-  
-  .signup-input {
-    padding: 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 1.2em;
-    width: 100%;
-  }
-  
-  .signup-button {
-    padding: 15px;
-    background-color: #b2d8d8;
-    border: none;
-    border-radius: 5px;
-    font-size: 1.2em;
-    color: #fff;
-    cursor: pointer;
-  }
-  
-  .signup-button:hover {
-    background-color: #8db6b6;
-  }
-  
-  /* Role Selection Styling */
-  .signup-role {
-    margin-bottom: 20px;
-    font-size: 1.2em;
-    color: #333;
-  }
-  
-  .signup-role label {
-    margin-right: 20px;
-    cursor: pointer;
-  }
-  
-  .signup-role input[type="radio"] {
-    margin-right: 10px;
-    cursor: pointer;
-  }
-  
+/* Container for the signup form */
+.signup-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f6f6f6;
+}
+
+/* Header styles */
+.header {
+  background-color: #b3c4c4;
+  width: 100%;
+  padding: 15px;
+  text-align: center;
+  font-family: 'Georgia', serif;
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 30px;
+}
+
+/* Content area for the form and image */
+.signup-content {
+  display: flex;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+/* Placeholder for the image */
+.signup-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-right: 20px;
+}
+
+.image-placeholder {
+  width: 200px;
+  height: 300px;
+  background-color: #e3e6e6;
+  border-radius: 8px;
+  background-image: url('./images/SignUp.png'); /* Use the actual image path */
+  background-size: cover;
+  background-position: center;
+}
+
+/* Signup form styling */
+.signup-form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.signup-form h2 {
+  font-family: 'Arial', sans-serif;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.role-selection {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.role-selection label {
+  margin-right: 20px;
+  font-family: 'Arial', sans-serif;
+  font-size: 1rem;
+}
+
+.signup-button {
+  background-color: #b3c4c4;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.signup-button:hover {
+  background-color: #91acac;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+}
