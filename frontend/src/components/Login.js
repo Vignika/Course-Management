@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
 import { useNavigate } from 'react-router-dom';
-import loginImage from './images/Login.png'; // Import the image
-import './Login.css'; // Import the CSS
+import loginImage from './images/Login.png'; // Use the image you've added
+import './Login.css'; // Import the updated CSS
 
-// Define the GraphQL mutation for login
 const LOGIN_USER = gql`
   mutation LoginUser($email: String!, $password: String!) {
     loginUser(email: $email, password: $password) {
@@ -38,37 +37,41 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-image-container">
-        <div className="course-management">Course Management</div>
-        <img src={loginImage} alt="Login Illustration" className="login-image" />
-      </div>
-      <div className="form-container">
-        <h2>Log In</h2>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Email:</label>
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-          </div>
-          <div>
-            <label>Password:</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
-          </div>
-          <button type="submit" disabled={loading}>
-            {loading ? 'Logging in...' : 'Login'}
-          </button>
-          {error && <p className="error">Error: {error.message}</p>}
-        </form>
-        <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+      <header className="header">
+        <h1>Course Management</h1>
+      </header>
+      <div className="login-content">
+        <div className="login-image-container">
+          <img src={loginImage} alt="Login Illustration" className="login-image" />
+        </div>
+        <div className="form-container">
+          <h2>Log In</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label>Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+            {error && <p className="error">Error: {error.message}</p>}
+          </form>
+          <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        </div>
       </div>
     </div>
   );

@@ -1,47 +1,50 @@
-/* StudentDashboard.css */
-
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-  }
-  
-  .dashboard-container {
+.dashboard-container {
     display: flex;
     flex-direction: column;
     height: 100vh;
   }
   
   .dashboard-header {
-    background-color: #a5c8c8;
-    padding: 20px;
+    background-color: #4f3c58;
+    padding: 60px;
+    color: rgb(255, 255, 255);
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: white;
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    position: relative; /* Allows the logout button to be absolutely positioned */
   }
   
   .dashboard-header h1 {
-    margin: 0;
+    margin: 0; /* Remove any default margin */
+    position: absolute; /* Make the h1 absolutely positioned */
+    left: 50%; /* Move it to the center horizontally */
+    transform: translateX(-50%); /* Adjust positioning to center */
   }
   
   .logout-btn {
-    background-color: transparent;
+    background-color: #4f3c58;
     border: none;
-    color: #333;
+    padding: 10px 10px;
     cursor: pointer;
-    font-size: 1.2em;
-  }
-  
+    position: absolute;
+    right: 20px;
+    font-size: 20px;
+    color: #fff;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.logout-btn:hover {
+    background-color: #4f3c58; /* Lighter shade on hover */
+}
+
   .dashboard-body {
     display: flex;
     flex: 1;
   }
   
   .sidebar {
-    background-color: #ddd;
-    width: 220px;
+    width: 200px;
+    background-color: #f4f4f4;
     padding: 20px;
   }
   
@@ -51,53 +54,92 @@ body {
   }
   
   .sidebar ul li {
-    padding: 10px 0;
+    padding: 10px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .sidebar ul li:hover {
-    background-color: #bbb;
   }
   
   .content {
     flex: 1;
     padding: 20px;
-    background-color: #fff;
-  }
-  
-  .courses {
-    margin-top: 20px;
   }
   
   .courses-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 20px;
   }
   
   .course-card {
-    background-color: #f1f1f1;
+    border: 1px solid #ccc;
     padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .course-card h3 {
-    margin-bottom: 10px;
+    border-radius: 5px;
+    width: 200px;
   }
   
   .enroll-btn {
-    background-color: #888;
-    color: white;
+    background-color: #6e162cb8;
     border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 10px;
     cursor: pointer;
+    margin-top: 10px;
+    color: #fff;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.enroll-btn:hover {
+    background-color: #6e162cb8; /* Darker shade on hover */
+}
+
+
+  
+  .enrolled-courses {
+    margin-top: 20px;
   }
   
-  .enroll-btn:hover {
-    background-color: #555;
+  .search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
   }
   
+  .course-structure-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .course-structure-table th,
+  .course-structure-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .course-structure-table th {
+    background-color: #f4f4f4;
+  }
+  
+  .dashboard {
+    padding: 20px;
+}
+
+.image-scrollbar {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    max-height: 200px;
+}
+
+.image-container {
+    display: inline-block;
+}
+
+.image-container img {
+    max-width: 300px;
+    margin-right: 10px;
+    border-radius: 10px;
+    vertical-align: middle;
+    display: inline-block;
+}

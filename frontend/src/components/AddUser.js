@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useMutation, gql } from '@apollo/client';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import './AddUser.css'; // Import the CSS file
 
 const ADD_USER = gql`
@@ -18,6 +19,7 @@ const SignupForm = () => {
   const [role, setRole] = useState('STUDENT');
 
   const [addUser, { loading, error }] = useMutation(ADD_USER);
+  const navigate = useNavigate(); // Initialize useNavigate
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +28,8 @@ const SignupForm = () => {
         variables: { email, password, role },
       });
       console.log('User added:', response.data.addUser);
-      // Handle successful signup
+      // Redirect to login page after successful signup
+      navigate('/login');
     } catch (e) {
       console.error('Error signing up:', e.message);
       // Handle error
@@ -40,7 +43,6 @@ const SignupForm = () => {
       </div>
       <div className="signup-content">
         <div className="signup-image">
-          {/* Image is represented as a div here; you can replace it with an <img> tag if you prefer */}
           <div className="image-placeholder"></div>
         </div>
         <form onSubmit={handleSubmit} className="signup-form">
