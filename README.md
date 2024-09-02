@@ -49,20 +49,16 @@ Tools:
 
 
  USE CASE DIAGRAM
+ 
+ ![Screenshot 2024-09-01 234527](https://github.com/user-attachments/assets/57ab4816-607d-41c4-82cf-6fb6eb040e3b)
+
 
 Link to access : Use Case Model – FigJam (figma.com)
 
 
-
-
-
-
-
-
-
 SCREENS STRUCTURE:
 
-
+![Screenshot 2024-09-01 235030](https://github.com/user-attachments/assets/52cc7d2f-f05e-429f-bb61-10b17afe2249)
 
 
 Link to access : Screens – Figma
@@ -154,44 +150,63 @@ Documentation
 SCREENS:
 Login Page:
 
+![Screenshot 2024-09-02 002116](https://github.com/user-attachments/assets/c4596c84-a5d1-4179-9ab3-71b707949cf7)
+
 SignUp Page:
 
+![Screenshot 2024-09-02 002311](https://github.com/user-attachments/assets/89e5f812-36fa-468a-a95c-391b2804a1d8)
 
 
 
 Faculty Dashboard:
 Dashboard:
+![Screenshot 2024-09-02 002548](https://github.com/user-attachments/assets/1ef1f135-3ef3-4643-b85b-c4c19cf62483)
+
 
 
 Manage Courses:
+
+![Screenshot 2024-09-02 002414](https://github.com/user-attachments/assets/fac875d9-4ee1-4054-a86d-2c28e7617b93)
+
+
 
 
 
 
 All Course Enrolled Students:
-
+![Screenshot 2024-09-02 002734](https://github.com/user-attachments/assets/73bb7743-5523-47b2-87d2-fbef90121e8e)
 
 Student Dashboard:
 Dashboard:
 
 
+![Screenshot 2024-09-02 002907](https://github.com/user-attachments/assets/ad87cd8b-98c2-4807-b648-88db94bd3483)
 
 
 
 All Courses:
+![Screenshot 2024-09-02 002457](https://github.com/user-attachments/assets/a2a7a510-589b-4827-bc58-53f62b261b9d)
 
 
 Enrolled Courses:
 
+![Screenshot 2024-09-02 003010](https://github.com/user-attachments/assets/077d8141-c941-4823-bc66-1341e557d983)
 
 
 
 
 Course Structure:
 
+![Screenshot 2024-09-02 003044](https://github.com/user-attachments/assets/fd710341-dca0-4d4b-af6b-58c9c700fca6)
 
 
 TEST CASES
+
+![Screenshot 2024-09-01 125958](https://github.com/user-attachments/assets/450e1a27-52cb-4c41-9141-29fdfd83a4d8)
+
+![Screenshot 2024-09-01 130419](https://github.com/user-attachments/assets/3cd83cad-443d-45bb-9017-007782ee176d)
+
+![Screenshot 2024-09-01 130727](https://github.com/user-attachments/assets/0201ba73-8d69-4bfb-af2f-94faa1aae5cf)
 
 
 
